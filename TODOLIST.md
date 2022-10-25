@@ -3,6 +3,7 @@
 - 기존 react에서는 ToDoList form을 만들기 위해서는 useState, event function, check validation을 일일이 컴포넌트마다 할당해야 했다. 그러지 않기 위해 recoil 라이브러리와 react hook form을 사용하려고 한다.
 
 - 많은 코드들을 한 줄로 정리해주고, 큰 form에서 유용하다.
+- react-hook-form에서 문자열을 리턴하면 에러 메세지를 리턴하게 된다.
 
 ## useForm();
 
@@ -52,3 +53,20 @@
 ## defaultValues
 
 : useForm 안에 들어가는 값, 컴포넌트가 처음 렌더링될 때 초기값으로 사용된다.
+
+## setError()
+
+- 하나 이상의 오류를 수동으로 설정할 수 있다.
+
+`setError("name", {message : "text"})`
+
+- "name" 자리에는 에러를 발생시킬 항목의 이름을 적어주고, 띄울 메세지도 {message : ""}로 적어준다.
+- "name" 자리에 extraError 가 들어가면 특정한 항목에 해당되는 에러가 아닌 전체 form에 해당되는 에러가 된다.
+- form에서 선택한 input 항목에 {shouldFocus: true }로 강제로 focus 시킬 수 있다.
+
+# custom validation
+
+- firstname이 "nico"라는 이름을 포함하고 있는 사람은 등록할 수 없도록 설정하려고 한다.
+- register 함수 안에 ` validate: (value) => value.includes("nico") ? "no nicos allowed" : true,`를 입력
+  => "nico"라는 이름을 포함하면 validate가 false 로 됨과 동시에 메세지 출력, 아니면 true 값 반환하면서 통과
+- validate 안에는 Object 형식으로 여러 검사 항목을 넣을 수 있다.
