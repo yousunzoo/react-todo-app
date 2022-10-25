@@ -70,3 +70,6 @@
 - register 함수 안에 ` validate: (value) => value.includes("nico") ? "no nicos allowed" : true,`를 입력
   => "nico"라는 이름을 포함하면 validate가 false 로 됨과 동시에 메세지 출력, 아니면 true 값 반환하면서 통과
 - validate 안에는 Object 형식으로 여러 검사 항목을 넣을 수 있다.
+
+- 입력값이 submit 되고 검사를 통과하면 다시 input을 비우고 싶다.
+  => setValue
