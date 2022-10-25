@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 /* function ToDoList() {
@@ -30,36 +29,76 @@ import { useForm } from "react-hook-form";
   );
 } */
 
+interface IForm {
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  password: string;
+  password1: string;
+}
+
 function ToDoList() {
-  const { register, formState, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IForm>({
+    defaultValues: {
+      email: "@naver.com",
+    },
+  });
   const onValid = (data: any) => {
     console.log(data);
   };
-  console.log(formState.errors);
+  console.log(errors);
   return (
     <div>
       <form
-        style={{ display: "flex", flexDirection: "column" }}
+        style={{
+          display: "flex",
+          width: 500,
+          margin: "auto",
+          marginTop: 100,
+          flexDirection: "column",
+        }}
         onSubmit={handleSubmit(onValid)}>
-        <input {...register("email", { required: true })} placeholder="Email" />
         <input
-          {...register("firstName", { required: true })}
+          style={{ borderColor: errors?.email?.message ? "red" : "" }}
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]+@naver\.com$/,
+              message: "Only naver.com emails allowed",
+            },
+          })}
+          placeholder="Email"
+        />
+        <span>{errors?.email?.message}</span>
+        <input
+          {...register("firstName", { required: "Write here" })}
           placeholder="First Name"
         />
+        <span>{errors?.firstName?.message}</span>
         <input
-          {...register("lastName", { required: true })}
+          {...register("lastName", { required: "Write here" })}
           placeholder="Last Name"
         />
+        <span>{errors?.lastName?.message}</span>
         <input
           {...register("username", {
             required: "Password is required",
-            minLength: 5,
+            minLength: {
+              value: 5,
+              message: "Username is too short",
+            },
           })}
           placeholder="Username"
         />
+        <span>{errors?.username?.message}</span>
         <input
           {...register("password", {
-            required: true,
+            required: "Write here",
             minLength: {
               value: 10,
               message: "Your password is too short",
@@ -67,10 +106,12 @@ function ToDoList() {
           })}
           placeholder="Password"
         />
+        <span>{errors?.password?.message}</span>
         <input
-          {...register("password1", { required: true, minLength: 10 })}
+          {...register("password1", { required: "Write here", minLength: 10 })}
           placeholder="Password1"
         />
+        <span>{errors?.password1?.message}</span>
         <button>Add</button>
       </form>
     </div>
