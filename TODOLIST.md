@@ -96,3 +96,23 @@
 # TO DO category button 활성화 시키기
 
 1. id로 해당 todo를 찾아와야 한다. - index 찾기
+   setToDos로부터 oldToDos의 array를 받아오고 있고, 이 array에서 toDo의 index를 찾기 위해 toDo의 id가 props에서 온 id와 같은지 비교하고 있다.
+
+`Array.prototype.findIndex()`
+
+- 주어진 판별 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환.
+- 만족하는 요소가 없으면 -1 반환
+
+`const food = ["pizza", "mango", "kimchi", "kimbab"]; const front = ["pizza"]; const back = ["kimchi", "kimbab"]; const finalPart = [...front, "carrot", ...back];`
+
+- food 배열에서 "mango"의 자리에 "carrot"을 넣고자 한다.
+
+1. "mango"의 위치를 구해야 한다. -- findIndex
+2. food 배열을 "mango"를 기점으로 두 부분으로 나눈다. (front, back)
+3. front + "carrot" + "back"을 합친 새 배열을 만든다.
+
+- slice 함수에서 end부분을 지정하지 않으면 알아서 끝부분까지 잘라준다.
+- as any : 타입스크립트에게 체크하지 말라고 선언
+
+- map을 이용해서도 할 수 있다.
+  `const onClick = (category : IToDo["category"]) => {setToDos((prev)=>prev.map((toDo)=>{if (toDo.id === id){return{...toDo, category};} return toDo;}))}`

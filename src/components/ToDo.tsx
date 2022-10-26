@@ -1,72 +1,37 @@
 import { useSetRecoilState } from "recoil";
 import { IToDo, toDoState } from "../atoms";
 
-const array = [
-  {
-    text: "5",
-    id: 1666748536994,
-    category: "TO_DO",
-  },
-  {
-    text: "4",
-    id: 1666748536515,
-    category: "TO_DO",
-  },
-  {
-    text: "3",
-    id: 1666748536276,
-    category: "TO_DO",
-  },
-  {
-    text: "2",
-    id: 1666748536071,
-    category: "TO_DO",
-  },
-  {
-    text: "1",
-    id: 1666748535782,
-    category: "TO_DO",
-  },
-];
-
-// 1) find to do based on id [2]
-
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
-  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const {
-      currentTarget: { name },
-    } = event;
+  const onClick = (newCat: IToDo["category"]) => {
+    console.log(newCat);
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
-      const oldToDo = oldToDos[targetIndex];
-      const newToDo = { text, id, category: name };
+      const newToDo = { text, id, category: newCat };
       console.log(
         "replace the to do in the index",
         targetIndex,
         "with",
         newToDo
       );
-      return oldToDos;
+      return [
+        ...oldToDos.slice(0, targetIndex),
+        newToDo,
+        ...oldToDos.slice(targetIndex + 1),
+      ];
     });
   };
   return (
     <li>
       <span>{text}</span>
       {category !== "DOING" && (
-        <button name="DOING" onClick={onClick}>
-          Doing
-        </button>
+        <button onClick={() => onClick("DOING")}>Doing</button>
       )}
       {category !== "TO_DO" && (
-        <button name="TO_DO" onClick={onClick}>
-          To Do
-        </button>
+        <button onClick={() => onClick("TO_DO")}>To Do</button>
       )}
       {category !== "DONE" && (
-        <button name="DONE" onClick={onClick}>
-          Done
-        </button>
+        <button onClick={() => onClick("DONE")}>Done</button>
       )}
     </li>
   );
