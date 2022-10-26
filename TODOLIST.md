@@ -90,3 +90,9 @@
 - interface 속성에서 옵션을 몇가지로 제한하고 싶다면 "|" 을 이용해서 제한할 수 있다. => category : "TO_DO" | "DONE" | "DOING";
 
 - `category !== "DOING" && <button></button>`는 `if(category !== "DOING"){<button></button>}`과 같다.
+
+---
+
+# TO DO category button 활성화 시키기
+
+1. id로 해당 todo를 찾아와야 한다. - index 찾기
