@@ -142,3 +142,7 @@ selector는 파생된 state(derived state)의 일부를 나타낸다.
 
 - select 태그로 해당 카테고리 내용만 불러오고자 한다.
   => toDoSelector 안에 `return toDos.filter((toDo) => toDo.category === category);`를 작성한다.
+
+# Enums
+
+- toDo의 카테고리가 categoryState에 따라서 추가되게 하고싶다.
