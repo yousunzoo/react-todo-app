@@ -143,6 +143,25 @@ selector는 파생된 state(derived state)의 일부를 나타낸다.
 - select 태그로 해당 카테고리 내용만 불러오고자 한다.
   => toDoSelector 안에 `return toDos.filter((toDo) => toDo.category === category);`를 작성한다.
 
-# Enums
+# Enums(열거형)
+
+: Typescript에서 제공하는 기능 중 하나로, 열거형을 사용하면 의도를 문서화 하거나 구분되는 사례 집합을 더 쉽게 만들 수 있다.
+: Typescript는 숫자와 문자열 기반 열거형을 제공한다.
+
+## 숫자 열거형 (Numeric enums)
+
+- 특별 지정 없으면 0부터 시작한다.
+  `enum Direction {"Up", "Down", "Left", "Right"} `
+  `Direction.Up`은 0, `Direction.Down`은 1의 값을 가진다.
+
+## 문자열 열거형 (String enums)
+
+`enum Direction {Up : "UP", Down:"DOWN"}`
+`Direction.Up`은 "UP"을, `Direction.Down`은 "DOWN"의 값을 가지낟.
 
 - toDo의 카테고리가 categoryState에 따라서 추가되게 하고싶다.
+- 그런데 string을 일일이 다 써붙이는 것이 아니라 코드로 해결하고 싶다. (실수를 방지하고 보호하기 위함)
+
+- type : 그냥 복붙을 안하게 하는 단순한 문법
+- enum : enumerable.
+- 원하는 string들로 enumerable을 만들고, enumName.categoryname 형식으로 쓰면 된다.
