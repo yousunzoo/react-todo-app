@@ -116,3 +116,23 @@
 
 - map을 이용해서도 할 수 있다.
   `const onClick = (category : IToDo["category"]) => {setToDos((prev)=>prev.map((toDo)=>{if (toDo.id === id){return{...toDo, category};} return toDo;}))}`
+
+---
+
+# Recoil Selector
+
+- derived state : state를 입력 받아서 그걸 변형해 반환하는 순수함수를 거쳐 반환된 값
+- selector를 사용하면 state를 만들 수 있다.
+
+- atom : 배열
+- selector : atom의 output을 변형시킴
+
+- selector는 key와 get 값을 가진다.
+- get은 options라는 인자를 받으면서 호출된다.
+- options는 객체이고, get function이 들어있다. get Fn을 이용하면 selector의 내부로 atom을 가지고 올 수 있다.
+
+- .filter() : 배열에서 조건에 맞지 않는 원소들을 제거한 배열을 return 한다.
+
+- selector를 이용해서 category 별로 배열을 만들고자 한다.
+- useRecoilValue(toDoSelector)는 배열을 반환한다.
+- 배열 안의 배열을 선택하려면 `const [toDo, doing, done] = useRecoilValue(toDoSelector)`처럼 배열을 열고 순서대로 이름을 지정하면 된다.
