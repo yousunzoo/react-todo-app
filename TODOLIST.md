@@ -121,8 +121,11 @@
 
 # Recoil Selector
 
-- derived state : state를 입력 받아서 그걸 변형해 반환하는 순수함수를 거쳐 반환된 값
-- selector를 사용하면 state를 만들 수 있다.
+selector는 파생된 state(derived state)의 일부를 나타낸다.
+-> 기존 state를 가져와서, 기존 state를 이용해 새로운 state를 만들어서 반환할 수 있다.
+
+- 기존 state를 이용할 뿐 변형시키지 않는다.
+- derived state는 다른 데이터에 의존하는 동적인 데이터를 만들 수 있기 때문에 강력한 개념이다.
 
 - atom : 배열
 - selector : atom의 output을 변형시킴
@@ -136,3 +139,6 @@
 - selector를 이용해서 category 별로 배열을 만들고자 한다.
 - useRecoilValue(toDoSelector)는 배열을 반환한다.
 - 배열 안의 배열을 선택하려면 `const [toDo, doing, done] = useRecoilValue(toDoSelector)`처럼 배열을 열고 순서대로 이름을 지정하면 된다.
+
+- select 태그로 해당 카테고리 내용만 불러오고자 한다.
+  => toDoSelector 안에 `return toDos.filter((toDo) => toDo.category === category);`를 작성한다.
