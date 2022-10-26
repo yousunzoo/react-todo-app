@@ -80,7 +80,11 @@
 
 ## useRecoilState
 
+`const toDoState = atom<IToDo[]>({key : "toDo", default:[]})`
+`const [toDos, setToDos] = useRecoilState(toDoState)`
+
 - useRecoilState 함수는 value와 modifier 함수를 반환한다. (useState와 같은 역할)
 - useRecoilValue 와 useSetRecoilState를 합친 역할
 
 - oldToDos 자체는 배열이지만 ...oldToDos는 배열 안의 요소들을 반환한다.
+- interface 속성에서 옵션을 몇가지로 제한하고 싶다면 "|" 을 이용해서 제한할 수 있다. => category : "TO_DO" | "DONE" | "DOING";
