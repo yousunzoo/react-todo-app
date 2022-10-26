@@ -26,7 +26,12 @@ function CreateToDo() {
         })}
         placeholder="Write a to do"
       />
-      <button>Add</button>
+      <button>
+        <img
+          src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/plus-round-icon.png"
+          alt="plus"
+        />
+      </button>
     </form>
   );
 }
